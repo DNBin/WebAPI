@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,9 +11,18 @@ namespace WebAPI.Controllers
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public HttpResponseMessage Get()
         {
-            return new string[] { "value1", "value2" };
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID");
+            dt.Columns.Add("Name");
+
+            dt.Rows.Add(1,"IT");
+            dt.Rows.Add(2,"Sup");
+
+
+
+            return Request.CreateResponse(HttpStatusCode.OK, dt);
         }
 
         // GET api/values/5
